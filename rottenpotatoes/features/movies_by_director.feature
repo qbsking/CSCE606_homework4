@@ -30,5 +30,17 @@ Scenario: can't find similar movies if we don't know director (sad path)
   Given I am on the details page for "Alien"
   Then  I should not see "Ridley Scott"
   When  I follow "Find Movies With Same Director"
-  Then  I should be on the home page
+  Then  I should be on the RottenPotatoes home page 
   And   I should see "'Alien' has no director info"
+
+
+Scenario: add movie
+  Given I am on the RottenPotatoes home page
+  And  I follow "Add new movie"
+  Then I should be on the new movie page
+  When I fill in "Title" with "The Infiltrator"
+  And I select "R" from "Rating"
+  # And I select "2016-07-15" from "Release On"
+  And I press "Save Changes"
+  Then I should be on the RottenPotatoes home page
+  And I should see "The Infiltrator was successfully created."
